@@ -16,7 +16,7 @@ Requisitos:
 
 1. Criar projeto:
 
-    dotnet new mvc -o frontend -f net5.0
+        dotnet new mvc -o frontend -f net5.0
 
 2. Criar Model PizzaInfo;
 3. Criar Services IPizzaService, PizzaService;
@@ -56,9 +56,12 @@ Requisitos:
         kubectl port-forward service/pizzafrontend 7080:8080
 
 16. Link para acessar a aplicação: http://localhost:7080
+<<<<<<< HEAD
 
 ----
 
 # Branch backend
 
 Na branch backend há alterações no projeto criando uma API, e esta será consumida pelo frontend (também foram feitas alterações no projeto frontend).
+=======
+>>>>>>> 9f53de0d0b40bf03e5ac02e6cb23def8828be0bd
