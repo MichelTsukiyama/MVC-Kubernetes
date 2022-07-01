@@ -63,5 +63,4 @@ Requisitos:
 # Branch backend
 
 Na branch backend há alterações no projeto criando uma API, e esta será consumida pelo frontend (também foram feitas alterações no projeto frontend).
-=======
->>>>>>> 9f53de0d0b40bf03e5ac02e6cb23def8828be0bd
+
