@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sG07ZIDn17sy/vU/QjjrVIexv6yWwlPjQ//Gc30VOBJNESdb6mH+zKei6uv6HZB4ybuN2MF9Q1beHTFQpsdNLA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\miche\\Documents\\work2022\\MVC-Kubernetes\\frontend\\frontend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\miche\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}

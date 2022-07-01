@@ -1,0 +1,26 @@
+@model IEnumerable<frontend.Models.PizzaInfo>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSezBhgIac8NQufqKK_mxEyHyF6LoEo0g7JGw&usqp=CAU" classe="img-fluid" alt="Pizzaria">
+<center><h3>Mamma Mia - <menu type="toolbar"></menu></h3></center>
+<br/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pizza</th>
+            <th>Ingredientes</th>
+            <th>Preço</th>
+            <th>Disponível ?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pizza in Model)
+        {
+            <tr>
+                <td>@pizza.PizzaNome</td>
+                <td>@pizza.Ingredientes</td>
+                <td>@pizza.PizzaPreco.ToString("c")</td>
+                <td>@pizza.EmEstoque</td>
+            </tr>
+        }
+    </tbody>
+</table>
