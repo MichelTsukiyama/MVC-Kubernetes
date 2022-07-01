@@ -16,7 +16,7 @@ Requisitos:
 
 1. Criar projeto:
 
-    dotnet new mvc -o frontend -f net5.0
+        dotnet new mvc -o frontend -f net5.0
 
 2. Criar Model PizzaInfo;
 3. Criar Services IPizzaService, PizzaService;
