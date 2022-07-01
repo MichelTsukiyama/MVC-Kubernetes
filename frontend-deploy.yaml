@@ -4,6 +4,9 @@ metadata:
   name: pizzafrontend
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: pizzafrontend
   template:
     metadata:
       labels:
@@ -17,8 +20,18 @@ spec:
         env:
         - name: ASPNETCORE_URLS
           value: http://*:80
+        - name: backendUrl
+          value: http://pizzabackend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pizzafrontend
+spec:
+  type: LoadBalancer
   selector:
-    matchLabels:
-      app: pizzafrontend
+    app: pizzafrontend
+  ports:
+  - port: 80
 
 

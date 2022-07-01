@@ -13,13 +13,13 @@ namespace frontend.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IPizzaService _pizza;
+        private readonly IPizzaService _service;
         public IEnumerable<PizzaInfo> Pizzas;
 
-        public HomeController(ILogger<HomeController> logger, IPizzaService pizza)
+        public HomeController(ILogger<HomeController> logger, IPizzaService service)
         {
             _logger = logger;
-            _pizza = pizza;
+            _service = service;
         }
 
         public IActionResult Index()
@@ -32,9 +32,9 @@ namespace frontend.Controllers
             return View();
         }
 
-        public IActionResult GetPizzas()
+        public async Task<IActionResult> GetPizzas()
         {
-            Pizzas = _pizza.GetPizzas();
+            Pizzas = await _service.GetPizzasAsync();
 
             if (Pizzas is null)
                 return View("Error");

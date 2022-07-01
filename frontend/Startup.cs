@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,12 @@ namespace frontend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IPizzaService, PizzaService>();
             services.AddControllersWithViews();
+            services.AddHttpClient<IPizzaService, PizzaService>("PizzaInfo", client => 
+            {
+                client.BaseAddress = new Uri(Configuration.GetValue<string>("backendUrl"));
+            });
+            services.AddScoped<IPizzaService, PizzaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

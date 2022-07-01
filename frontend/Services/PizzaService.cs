@@ -1,22 +1,40 @@
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 using frontend.Models;
 
 namespace frontend.Services
 {
     public class PizzaService : IPizzaService
     {
-        public IEnumerable<PizzaInfo> GetPizzas()
+        private readonly IHttpClientFactory _clientFactory;
+        private readonly JsonSerializerOptions _options;
+        private const string apiEndpoint = "/api/pizzainfo/";
+        private IEnumerable<PizzaInfo> pizzas;
+
+        public PizzaService(IHttpClientFactory clientFactory)
         {
-            var pizzas = new List<PizzaInfo>
-            {
-                new PizzaInfo { PizzaNome = "Almondegas recheadas", Ingredientes = "Almondegas, muzzarela e tomate", PizzaPreco = 45.90m, EmEstoque = "sim"},
-                new PizzaInfo { PizzaNome = "Frutos do mar", Ingredientes = "Frutos do mar com recheio e tomate", PizzaPreco = 47.90m, EmEstoque = "não"},
-                new PizzaInfo { PizzaNome = "Cogumelos com rúcula", Ingredientes = "Cogumelo, rúcula e tomate", PizzaPreco = 32.90m, EmEstoque = "sim"},
-                new PizzaInfo { PizzaNome = "Serrana", Ingredientes = "Abacaxi, bacon, pimenta , muzzarela e tomate", PizzaPreco = 45.90m, EmEstoque = "sim"},
-                new PizzaInfo { PizzaNome = "Calabresa com sal", Ingredientes = "Calabresa, muzzarela e tomate", PizzaPreco = 35.90m, EmEstoque = "não"},
-                new PizzaInfo { PizzaNome = "Muzzarela especial", Ingredientes = "Muzzarela, orégano e tomate", PizzaPreco = 40.90m, EmEstoque = "sim"},
-                new PizzaInfo { PizzaNome = "Portuguesa especial", Ingredientes = "Muzzarela, presunto, ovos, ervilha, palmito e tomate", PizzaPreco = 51.90m, EmEstoque = "sim"}
-            };
+            _clientFactory = clientFactory;
+            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true};
+        }
+
+        public async Task<IEnumerable<PizzaInfo>> GetPizzasAsync()
+        {
+           var client = _clientFactory.CreateClient("PizzaInfo");
+           using (var response = await client.GetAsync(apiEndpoint))
+           {
+                if(response.IsSuccessStatusCode)
+                {
+                    var apiResponse = await response.Content.ReadAsStreamAsync();
+                    pizzas = await JsonSerializer
+                            .DeserializeAsync<IEnumerable<PizzaInfo>>(apiResponse, _options);
+                }
+                else
+                {
+                    return null;
+                }
+           }
             return pizzas;
         }
     }

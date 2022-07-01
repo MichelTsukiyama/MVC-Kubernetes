@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using frontend.Models;
 
 namespace frontend.Services
 {
     public interface IPizzaService
     {
-         IEnumerable<PizzaInfo> GetPizzas();
+        Task <IEnumerable<PizzaInfo>> GetPizzasAsync();
     }
 }

@@ -56,3 +56,10 @@ Requisitos:
         kubectl port-forward service/pizzafrontend 7080:8080
 
 16. Link para acessar a aplicação: http://localhost:7080
+
+
+-----
+
+# Branch backend
+
+Na branch backend há alterações no projeto criando uma API, e esta será consumida pelo frontend (também foram feitas alterações no projeto frontend).
